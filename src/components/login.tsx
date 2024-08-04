@@ -1,4 +1,5 @@
 import { type Component, useContext } from "solid-js";
+import Cookies from "universal-cookie";
 import { createStore } from "solid-js/store";
 import { useNavigate } from "@solidjs/router";
 
@@ -6,6 +7,8 @@ import { User } from "../models/user";
 
 import { AuthContext } from "../context/auth";
 import { StatusCodes } from "http-status-codes";
+
+const cookies = new Cookies(null, { path: "/" });
 
 export const Login: Component = () => {
   const [fields, setFields] = createStore<Partial<User>>({});
@@ -31,6 +34,7 @@ export const Login: Component = () => {
         return res.json();
       })
       .then((res: User) => {
+        cookies.set("user", res);
         auth.setUser(res);
         navigate("/");
       })

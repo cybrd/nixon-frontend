@@ -5,10 +5,14 @@ import {
   createContext,
   createSignal,
 } from "solid-js";
+import Cookies from "universal-cookie";
+
 import { User } from "../models/user";
 
+const cookies = new Cookies(null, { path: "/" });
+
 const providerValue = () => {
-  const [user, setUser] = createSignal<Partial<User>>({});
+  const [user, setUser] = createSignal<Partial<User>>(cookies.get("user"));
 
   return { setUser, user };
 };
