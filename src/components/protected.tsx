@@ -7,8 +7,9 @@ import { Menu } from "./menu";
 export const Protected: ParentComponent = (props) => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
+  const username = auth.user()?.username;
 
-  if (!auth.user().username) {
+  if (!username) {
     console.log("to login");
     navigate("/login");
   }
