@@ -6,7 +6,7 @@ import { useNavigate } from "@solidjs/router";
 import { User } from "../models/user";
 
 import { AuthContext } from "../context/auth";
-import { StatusCodes } from "http-status-codes";
+import { userLogin } from "../services/user";
 
 const cookies = new Cookies(null, { path: "/" });
 
@@ -18,21 +18,8 @@ export const Login: Component = () => {
   const submit = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
-    fetch(`${import.meta.env.VITE_API_SERVER}/user/login`, {
-      body: JSON.stringify({
-        password: fields.password,
-        username: fields.username,
-      }),
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-    })
-      .then((res) => {
-        if (res.status !== StatusCodes.OK) {
-          throw res;
-        }
 
-        return res.json();
-      })
+    userLogin(fields.username || "", fields.password || "")
       .then((res: User) => {
         cookies.set("user", res);
         auth.setUser(res);

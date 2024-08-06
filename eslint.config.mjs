@@ -10,6 +10,7 @@ export default tseslint.config(eslint.configs.all, ...tseslint.configs.strict, {
     "id-length": 0,
     "new-cap": 0,
     "no-console": 0,
+    "no-ternary": 0,
     "one-var": 0,
     "sort-imports": ["error", { allowSeparatedGroups: true }],
   },

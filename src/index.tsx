@@ -1,16 +1,15 @@
 import { Route, Router } from "@solidjs/router";
 import { render } from "solid-js/web";
 
-import "./index.scss";
-import styles from "./App.module.scss";
+import "bootstrap/scss/bootstrap.scss";
 
 import { AuthProvider } from "./context/auth";
 import { Protected } from "./components/protected";
 
+import { Employee } from "./components/employee";
 import { Home } from "./components/home";
 import { Login } from "./components/login";
 import { Logout } from "./components/logout";
-import { Page1 } from "./components/page1";
 
 const root = document.getElementById("root") as HTMLElement;
 
@@ -22,8 +21,8 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(
   () => (
-    <div class={styles.App}>
-      <header class={styles.header}>
+    <div class="App">
+      <header class="header">
         <Router>
           <AuthProvider>
             <Route path="/login" component={Login} />
@@ -31,7 +30,7 @@ render(
 
             <Route path="/" component={Protected}>
               <Route path="/" component={Home} />
-              <Route path="/page1" component={Page1} />
+              <Employee />
             </Route>
           </AuthProvider>
         </Router>

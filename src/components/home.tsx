@@ -8,7 +8,7 @@ export const Home: Component = () => {
 
   fetch(`${import.meta.env.VITE_API_SERVER}/test/supervisor`, {
     headers: {
-      Authorization: `Bearer ${auth.user()?.token}`,
+      Authorization: `Bearer ${auth.user().token}`,
       "Content-Type": "application/json",
     },
   })
