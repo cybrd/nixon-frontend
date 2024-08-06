@@ -23,22 +23,20 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(
   () => (
-    <div class="App">
-      <header class="header">
-        <Router>
-          <AuthProvider>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
+    <div class="container-fluid">
+      <Router>
+        <AuthProvider>
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
 
-            <Route path="/" component={Protected}>
-              <Route path="/" component={Home} />
-              <Employee />
-              <Handbook />
-              <Violation />
-            </Route>
-          </AuthProvider>
-        </Router>
-      </header>
+          <Route path="/" component={Protected}>
+            <Route path="/" component={Home} />
+            <Employee />
+            <Handbook />
+            <Violation />
+          </Route>
+        </AuthProvider>
+      </Router>
     </div>
   ),
   root

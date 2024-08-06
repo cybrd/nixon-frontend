@@ -15,9 +15,14 @@ export const Protected: ParentComponent = (props) => {
   }
 
   return (
-    <div>
-      <Menu />
-      <div>{props.children}</div>
+    <div class="vh-100 d-flex flex-column overflow-hidden">
+      <div class="flex-fill d-flex flex-row overflow-auto">
+        <div class="d-flex flex-column">
+          <Menu />
+        </div>
+
+        <div class="flex-fill p-3 overflow-auto">{props.children}</div>
+      </div>
     </div>
   );
 };

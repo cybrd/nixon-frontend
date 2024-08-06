@@ -10,7 +10,7 @@ export const userLogin = (username: string, password: string) =>
     method: "POST",
   }).then((res) => {
     if (res.status !== StatusCodes.OK) {
-      throw res;
+      throw StatusCodes[res.status];
     }
 
     return res.json();
