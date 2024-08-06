@@ -7,7 +7,10 @@ export const Menu: Component = () => (
       <A href="/">Home</A>
     </div>
     <div>
-      <A href="/employee">Employee</A>
+      <A href="/employee">Employee List</A>
+    </div>
+    <div>
+      <A href="/handbook">Handbook</A>
     </div>
     <div>
       <A href="/logout">Logout</A>

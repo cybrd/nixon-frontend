@@ -7,6 +7,7 @@ import { AuthProvider } from "./context/auth";
 import { Protected } from "./components/protected";
 
 import { Employee } from "./components/employee";
+import { Handbook } from "./components/handbook";
 import { Home } from "./components/home";
 import { Login } from "./components/login";
 import { Logout } from "./components/logout";
@@ -31,6 +32,7 @@ render(
             <Route path="/" component={Protected}>
               <Route path="/" component={Home} />
               <Employee />
+              <Handbook />
             </Route>
           </AuthProvider>
         </Router>
