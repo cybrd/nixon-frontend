@@ -32,7 +32,9 @@ export const List = () => {
   const [data, setData] = createStore<Violation[]>([]);
 
   createEffect(() => {
-    violationList(auth.user()?.token).then((res) => setData(res));
+    violationList(auth.user()?.token)
+      .then((res) => setData(res))
+      .catch(console.error);
   });
 
   return (

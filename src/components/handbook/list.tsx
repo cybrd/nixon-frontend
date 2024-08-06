@@ -10,7 +10,9 @@ export const List = () => {
   const [data, setData] = createStore<Handbook[]>([]);
 
   createEffect(() => {
-    handbookList(auth.user()?.token).then((res) => setData(res));
+    handbookList(auth.user()?.token)
+      .then((res) => setData(res))
+      .catch(console.error);
   });
 
   return (
