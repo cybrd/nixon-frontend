@@ -13,6 +13,9 @@ export const Menu: Component = () => (
       <A href="/handbook">Handbook</A>
     </div>
     <div>
+      <A href="/violation">Violation</A>
+    </div>
+    <div>
       <A href="/logout">Logout</A>
     </div>
   </div>

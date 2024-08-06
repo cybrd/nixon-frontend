@@ -11,6 +11,7 @@ import { Handbook } from "./components/handbook";
 import { Home } from "./components/home";
 import { Login } from "./components/login";
 import { Logout } from "./components/logout";
+import { Violation } from "./components/violation";
 
 const root = document.getElementById("root") as HTMLElement;
 
@@ -33,6 +34,7 @@ render(
               <Route path="/" component={Home} />
               <Employee />
               <Handbook />
+              <Violation />
             </Route>
           </AuthProvider>
         </Router>
