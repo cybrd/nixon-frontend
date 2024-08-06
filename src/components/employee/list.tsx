@@ -10,7 +10,7 @@ export const List = () => {
   const [data, setData] = createStore<Employee[]>([]);
 
   createEffect(() => {
-    employeeList(auth.user().token).then((res) => setData(res));
+    employeeList(auth.user()?.token).then((res) => setData(res));
   });
 
   return (
