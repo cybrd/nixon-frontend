@@ -4,7 +4,7 @@ import { Employee } from "../models/employee";
 import { Query } from "../models/query";
 
 export type EmployeeList = {
-  count: number;
+  counts: number;
   data: Employee[];
 };
 export const employeeList = (options: Query) =>
