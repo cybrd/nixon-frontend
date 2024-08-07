@@ -1,10 +1,12 @@
 import { Index, createResource, createSignal, useContext } from "solid-js";
 import { useSearchParams } from "@solidjs/router";
 
-import { pagination, setParamsAndOptions } from "../helper/pagination";
 import { AuthContext } from "../../context/auth";
 import { Query } from "../../models/query";
 import { violationList } from "../../services/violation";
+
+import { pagination } from "../helper/pagination";
+import { setParamsAndOptions } from "../helper/params";
 
 const ListHeader = () => (
   <thead>

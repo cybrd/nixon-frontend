@@ -1,15 +1,20 @@
 import { Index, createResource, createSignal, useContext } from "solid-js";
 import { useSearchParams } from "@solidjs/router";
 
-import { pagination, setParamsAndOptions } from "../helper/pagination";
 import { AuthContext } from "../../context/auth";
 import { Query } from "../../models/query";
 import { employeeList } from "../../services/employee";
 
+import { filterSelect } from "../helper/filter-select";
+import { pagination } from "../helper/pagination";
+import { setParamsAndOptions } from "../helper/params";
+
 export const List = () => {
   const auth = useContext(AuthContext);
+
   const [params, setParams] = useSearchParams();
   const query = new URLSearchParams({
+    department: params.department || "",
     page: params.page || "",
   }).toString();
 
@@ -21,6 +26,7 @@ export const List = () => {
 
   return (
     <div>
+      {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
       <table class="table table-striped table-hover table-bordered">
         <thead>
           <tr>
