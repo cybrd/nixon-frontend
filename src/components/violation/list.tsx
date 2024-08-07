@@ -35,6 +35,8 @@ export const List = () => {
   const auth = useContext(AuthContext);
   const [params, setParams] = useSearchParams();
   const query = new URLSearchParams({
+    department: params.department || "",
+    fingerPrintId: params.fingerPrintId || "",
     page: params.page || "",
   }).toString();
 
@@ -58,7 +60,16 @@ export const List = () => {
             {(item) => (
               <tr>
                 <td>{item().controlNumber}</td>
-                <td>{item().employeeNumber}</td>
+                <td
+                  onClick={() => {
+                    setParamsAndOptions(
+                      setOptions,
+                      setParams
+                    )({ fingerPrintId: item().employeeNumber, page: "1" });
+                  }}
+                >
+                  {item().employeeNumber}
+                </td>
                 <td>{item().employeeName}</td>
                 <td>{item().department}</td>
                 <td>{item().position}</td>

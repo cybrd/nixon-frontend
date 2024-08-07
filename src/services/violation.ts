@@ -23,3 +23,21 @@ export const violationList = (options: Query) =>
       return res.json();
     })
     .then((res): ViolationList => res);
+
+export const violationCreate = (data: Violation, token = "") =>
+  fetch(`${import.meta.env.VITE_API_SERVER}/violation/create`, {
+    body: JSON.stringify(data),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  })
+    .then((res) => {
+      if (res.status !== StatusCodes.OK) {
+        throw res;
+      }
+
+      return res.json();
+    })
+    .then((res): ViolationList => res);

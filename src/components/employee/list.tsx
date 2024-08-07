@@ -15,6 +15,7 @@ export const List = () => {
   const [params, setParams] = useSearchParams();
   const query = new URLSearchParams({
     department: params.department || "",
+    fingerPrintId: params.fingerPrintId || "",
     page: params.page || "",
   }).toString();
 

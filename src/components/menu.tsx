@@ -16,6 +16,9 @@ export const Menu: Component = () => (
       <A href="/violation">Violation</A>
     </div>
     <div>
+      <A href="/violation/create">Violation Create</A>
+    </div>
+    <div>
       <A href="/logout">Logout</A>
     </div>
   </div>
