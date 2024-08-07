@@ -18,7 +18,7 @@ export const Protected: ParentComponent = (props) => {
   }
 
   if (!filter.filterOptions().department.length) {
-    filterOptionsList(auth.user().token)
+    filterOptionsList(auth.user()?.token)
       .then((res) => filter.setFilterOptions(res))
       .catch(console.error);
   }

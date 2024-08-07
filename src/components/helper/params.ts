@@ -9,7 +9,7 @@ export const setParamsAndOptions =
     setOptions: Setter<Query>,
     setParams: (params: SetParams, options?: Partial<NavigateOptions>) => void
   ) =>
-  (newParams: { [k: string]: string }) => {
+  (newParams: Record<string, string>) => {
     const auth = useContext(AuthContext);
 
     const currentParams = Object.fromEntries(

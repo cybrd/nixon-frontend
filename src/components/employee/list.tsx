@@ -27,6 +27,10 @@ export const List = () => {
   return (
     <div>
       {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
+      {filterSelect(
+        setParamsAndOptions(setOptions, setParams),
+        "fingerPrintId"
+      )}
       <table class="table table-striped table-hover table-bordered">
         <thead>
           <tr>

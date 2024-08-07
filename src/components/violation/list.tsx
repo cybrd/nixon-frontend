@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/auth";
 import { Query } from "../../models/query";
 import { violationList } from "../../services/violation";
 
+import { filterSelect } from "../helper/filter-select";
 import { pagination } from "../helper/pagination";
 import { setParamsAndOptions } from "../helper/params";
 
@@ -45,6 +46,11 @@ export const List = () => {
 
   return (
     <div>
+      {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
+      {filterSelect(
+        setParamsAndOptions(setOptions, setParams),
+        "fingerPrintId"
+      )}
       <table class="table table-striped table-hover table-bordered">
         <ListHeader />
         <tbody>
