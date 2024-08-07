@@ -17,7 +17,10 @@ export const Protected: ParentComponent = (props) => {
     navigate("/login");
   }
 
-  if (!filter.filterOptions().department.length) {
+  if (
+    !filter.filterOptions().department ||
+    !Object.keys(filter.filterOptions().department).length
+  ) {
     filterOptionsList(auth.user()?.token)
       .then((res) => filter.setFilterOptions(res))
       .catch(console.error);
@@ -31,7 +34,7 @@ export const Protected: ParentComponent = (props) => {
         </div>
 
         <div class="flex-fill p-3 overflow-auto">
-          <Show when={filter.filterOptions().department.length}>
+          <Show when={Object.keys(filter.filterOptions().department).length}>
             {props.children}
           </Show>
         </div>

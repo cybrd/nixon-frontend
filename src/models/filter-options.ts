@@ -1,4 +1,4 @@
-export type FilterOptions = {
-  department: string[];
-  fingerPrintId: string[];
-};
+export type FilterOptions = Record<
+  "department" | "fingerPrintId",
+  Record<string, string>
+>;

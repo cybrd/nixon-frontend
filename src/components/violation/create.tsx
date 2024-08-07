@@ -40,8 +40,8 @@ const employeeNumberInput = (
           onChange={(e) => setFields("employeeNumber", e.target.value)}
         >
           <option value="">----</option>
-          {options.map((i) => (
-            <option>{i}</option>
+          {Object.entries(options).map(([k, v]) => (
+            <option value={k}>{v}</option>
           ))}
         </select>
       </div>

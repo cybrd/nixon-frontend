@@ -10,7 +10,8 @@ import { FilterOptions } from "../models/filter-options";
 
 const providerValue = () => {
   const [filterOptions, setFilterOptions] = createSignal<FilterOptions>({
-    department: [],
+    department: {},
+    fingerPrintId: {},
   });
 
   return { filterOptions, setFilterOptions };

@@ -25,12 +25,16 @@ export const filterSelect = (
         onChange={(e) => setter({ [key]: e.currentTarget.value, page: "1" })}
       >
         <option value="">----</option>
-        {options.map((i) => {
-          if (i === params[key]) {
-            return <option selected>{i}</option>;
+        {Object.entries(options).map(([k, v]) => {
+          if (k === params[key]) {
+            return (
+              <option value={k} selected>
+                {v}
+              </option>
+            );
           }
 
-          return <option>{i}</option>;
+          return <option value={k}>{v}</option>;
         })}
       </select>
     </div>
