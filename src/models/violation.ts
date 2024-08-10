@@ -1,4 +1,5 @@
 export type Violation = {
+  _id: string;
   controlNumber: string;
   employeeNumber: string;
   employeeName: string;

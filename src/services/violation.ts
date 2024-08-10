@@ -32,12 +32,24 @@ export const violationCreate = (data: Violation, token = "") =>
       "Content-Type": "application/json",
     },
     method: "POST",
-  })
-    .then((res) => {
-      if (res.status !== StatusCodes.OK) {
-        throw res;
-      }
+  }).then((res) => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
 
-      return res.json();
-    })
-    .then((res): ViolationList => res);
+    return res.json();
+  });
+
+export const violationDelete = (id: string, token = "") =>
+  fetch(`${import.meta.env.VITE_API_SERVER}/violation/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "DELETE",
+  }).then((res) => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
+
+    return res.json();
+  });
