@@ -12,6 +12,7 @@ const providerValue = () => {
   const [filterOptions, setFilterOptions] = createSignal<FilterOptions>({
     department: {},
     fingerPrintId: {},
+    handbook: {},
   });
 
   return { filterOptions, setFilterOptions };

@@ -1,4 +1,4 @@
 export type FilterOptions = Record<
-  "department" | "fingerPrintId",
+  "department" | "fingerPrintId" | "handbook",
   Record<string, string>
 >;

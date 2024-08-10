@@ -1,15 +1,16 @@
 import { SetStoreFunction, createStore } from "solid-js/store";
 import { createSignal, useContext } from "solid-js";
+import toast, { Toaster } from "solid-toast";
 
 import { AuthContext } from "../../context/auth";
 import { FilterOptionsContext } from "../../context/filter-options";
 import { Violation } from "../../models/violation";
 import { violationCreate } from "../../services/violation";
 
-const controlNumberInput = (
+const inputControlNumber = (
   setFields: SetStoreFunction<Partial<Violation>>
 ) => (
-  <div class="form-group row p-1">
+  <div class="form-group row p-1 align-items-center">
     <label for="inputControlNumber" class="col-sm-2 form-label text-end">
       Control Number
     </label>
@@ -23,7 +24,7 @@ const controlNumberInput = (
   </div>
 );
 
-const employeeNumberInput = (
+const selectEmployeeNumber = (
   setFields: SetStoreFunction<Partial<Violation>>
 ) => {
   const filter = useContext(FilterOptionsContext);
@@ -31,12 +32,12 @@ const employeeNumberInput = (
 
   return (
     <div class="form-group row p-1">
-      <label for="inputEmployeeNumber" class="col-sm-2 form-label text-end">
+      <label for="selectEmployeeNumber" class="col-sm-2 form-label text-end">
         Employee Number
       </label>
       <div class="col-sm-4">
         <select
-          id="inputEmployeeNumber"
+          id="selectEmployeeNumber"
           onChange={(e) => setFields("employeeNumber", e.target.value)}
         >
           <option value="">----</option>
@@ -48,6 +49,135 @@ const employeeNumberInput = (
     </div>
   );
 };
+
+const selectDepartmentHead = (
+  setFields: SetStoreFunction<Partial<Violation>>
+) => {
+  const filter = useContext(FilterOptionsContext);
+  const options = filter.filterOptions().fingerPrintId;
+
+  return (
+    <div class="form-group row p-1">
+      <label for="selectDepartmentHead" class="col-sm-2 form-label text-end">
+        Department Head
+      </label>
+      <div class="col-sm-4">
+        <select
+          id="selectDepartmentHead"
+          onChange={(e) => setFields("deptHead", e.target.value)}
+        >
+          <option value="">----</option>
+          {Object.entries(options).map(([k, v]) => (
+            <option value={k}>{v}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+};
+
+const inputDateOfIncident = (
+  setFields: SetStoreFunction<Partial<Violation>>
+) => (
+  <div class="form-group row p-1 align-items-center">
+    <label for="inputDateOfIncident" class="col-sm-2 form-label text-end">
+      Date of Incident
+    </label>
+    <div class="col-sm-4">
+      <input
+        id="inputDateOfIncident"
+        type="date"
+        class="form-control"
+        onInput={(e) => setFields("dateOfIncident", e.target.value)}
+      />
+    </div>
+  </div>
+);
+
+const inputTimeOfIncident = (
+  setFields: SetStoreFunction<Partial<Violation>>
+) => (
+  <div class="form-group row p-1 align-items-center">
+    <label for="inputTimeOfIncident" class="col-sm-2 form-label text-end">
+      Time of Incident
+    </label>
+    <div class="col-sm-4">
+      <input
+        id="inputTimeOfIncident"
+        type="time"
+        class="form-control"
+        onInput={(e) => setFields("timeOfIncident", e.target.value)}
+      />
+    </div>
+  </div>
+);
+
+const selectReportedBy = (setFields: SetStoreFunction<Partial<Violation>>) => {
+  const filter = useContext(FilterOptionsContext);
+  const options = filter.filterOptions().fingerPrintId;
+
+  return (
+    <div class="form-group row p-1">
+      <label for="selectReportedBy" class="col-sm-2 form-label text-end">
+        Reported By
+      </label>
+      <div class="col-sm-4">
+        <select
+          id="selectReportedBy"
+          onChange={(e) => setFields("reportedBy", e.target.value)}
+        >
+          <option value="">----</option>
+          {Object.entries(options).map(([k, v]) => (
+            <option value={k}>{v}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+};
+
+const textareaIncidentDescription = (
+  setFields: SetStoreFunction<Partial<Violation>>
+) => (
+  <div class="form-group row p-1 align-items-center">
+    <label for="inputIncidentDescription" class="col-sm-2 form-label text-end">
+      Time of Incident
+    </label>
+    <div class="col-sm-4">
+      <textarea
+        id="inputIncidentDescription"
+        class="form-control"
+        onInput={(e) => setFields("incidentDescription", e.target.value)}
+      />
+    </div>
+  </div>
+);
+
+const selectHandbook = (setFields: SetStoreFunction<Partial<Violation>>) => {
+  const filter = useContext(FilterOptionsContext);
+  const options = filter.filterOptions().handbook;
+
+  return (
+    <div class="form-group row p-1">
+      <label for="selectHandbook" class="col-sm-2 form-label text-end">
+        Handbook
+      </label>
+      <div class="col-sm-4">
+        <select
+          class="col-sm-12"
+          id="selectHandbook"
+          onChange={(e) => setFields("under", e.target.value)}
+        >
+          <option value="">----</option>
+          {Object.entries(options).map(([k, v]) => (
+            <option value={k}>{v}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+};
+
 const showError = (error: string) => {
   if (error) {
     return <div class="mb-3">{error}</div>;
@@ -59,31 +189,51 @@ const showError = (error: string) => {
 export const Create = () => {
   const auth = useContext(AuthContext);
 
-  const [fields, setFields] = createStore<Partial<Violation>>({});
+  let [fields, setFields] = createStore<Partial<Violation>>({});
   const [error, setError] = createSignal("");
 
   const submit = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    violationCreate(fields as Violation, auth.user()?.token).catch((e) => {
-      console.error(e);
-      setError(e);
-    });
+    toast
+      .promise(violationCreate(fields as Violation, auth.user()?.token), {
+        error: "An error occurred 😔",
+        loading: "Loading",
+        success: <b>Done</b>,
+      })
+      .then(() => {
+        const form = document.getElementById("form") as HTMLFormElement;
+        form.reset();
+        [fields, setFields] = createStore<Partial<Violation>>({});
+      })
+      .catch((e) => {
+        console.error(e);
+        setError(e);
+      });
   };
 
   return (
     <div>
-      <form onSubmit={submit}>
-        {controlNumberInput(setFields)}
-        {employeeNumberInput(setFields)}
+      <form id="form" onSubmit={submit}>
+        {inputControlNumber(setFields)}
+        {selectEmployeeNumber(setFields)}
+        {selectDepartmentHead(setFields)}
+        {inputDateOfIncident(setFields)}
+        {inputTimeOfIncident(setFields)}
+        {selectReportedBy(setFields)}
+        {textareaIncidentDescription(setFields)}
+        {selectHandbook(setFields)}
 
-        <button type="submit" class="btn btn-primary">
-          Submit
-        </button>
+        <div class="col-sm-6 text-center">
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
 
         {showError(error())}
-      </form>
+      </form>{" "}
+      <Toaster />
     </div>
   );
 };
