@@ -53,3 +53,19 @@ export const violationDelete = (id: string, token = "") =>
 
     return res.json();
   });
+
+export const violationUploadFile = (arrayStr: unknown[], token = "") =>
+  fetch(`${import.meta.env.VITE_API_SERVER}/violation/upload`, {
+    body: JSON.stringify(arrayStr),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  }).then((res) => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
+
+    return res.json();
+  });

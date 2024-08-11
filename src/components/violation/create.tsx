@@ -1,6 +1,6 @@
 import { SetStoreFunction, createStore } from "solid-js/store";
-import { createSignal, useContext } from "solid-js";
 import toast, { Toaster } from "solid-toast";
+import { useContext } from "solid-js";
 
 import { AuthContext } from "../../context/auth";
 import { FilterOptionsContext } from "../../context/filter-options";
@@ -178,19 +178,10 @@ const selectHandbook = (setFields: SetStoreFunction<Partial<Violation>>) => {
   );
 };
 
-const showError = (error: string) => {
-  if (error) {
-    return <div class="mb-3">{error}</div>;
-  }
-
-  return <></>;
-};
-
 export const Create = () => {
   const auth = useContext(AuthContext);
 
   let [fields, setFields] = createStore<Partial<Violation>>({});
-  const [error, setError] = createSignal("");
 
   const submit = (event: Event) => {
     event.preventDefault();
@@ -209,7 +200,6 @@ export const Create = () => {
       })
       .catch((e) => {
         console.error(e);
-        setError(e);
       });
   };
 
@@ -230,9 +220,7 @@ export const Create = () => {
             Submit
           </button>
         </div>
-
-        {showError(error())}
-      </form>{" "}
+      </form>
       <Toaster />
     </div>
   );
