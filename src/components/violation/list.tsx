@@ -11,26 +11,24 @@ import { pagination } from "../helper/pagination";
 import { setParamsAndOptions } from "../helper/params";
 
 const ListHeader = () => (
-  <thead>
-    <tr>
-      <th>Control Number</th>
-      <th>Employee Number</th>
-      <th>Employee Name</th>
-      <th>Department</th>
-      <th>Position</th>
-      <th>Department Head</th>
-      <th>Date of Incident</th>
-      <th>Time of Incident</th>
-      <th>Reported By</th>
-      <th>Incident Description</th>
-      <th>Under</th>
-      <th>Violation</th>
-      <th>Description</th>
-      <th>Penalty</th>
-      <th>Number of Times</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+  <tr>
+    <th>Control Number</th>
+    <th>Employee Number</th>
+    <th>Employee Name</th>
+    <th>Department</th>
+    <th>Position</th>
+    <th>Department Head</th>
+    <th>Date of Incident</th>
+    <th>Time of Incident</th>
+    <th>Reported By</th>
+    <th>Incident Description</th>
+    <th>Under</th>
+    <th>Violation</th>
+    <th>Description</th>
+    <th>Penalty</th>
+    <th>Number of Times</th>
+    <th>Actions</th>
+  </tr>
 );
 
 export const List = () => {
@@ -80,15 +78,22 @@ export const List = () => {
 
   return (
     <div>
-      <div class="sticky-top bg-white p-2">
-        {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
-        {filterSelect(
-          setParamsAndOptions(setOptions, setParams),
-          "fingerPrintId"
-        )}
-      </div>
       <table class="table table-striped table-hover table-bordered">
-        <ListHeader />
+        <thead class="sticky-top bg-white p-2">
+          <tr>
+            <th colSpan={"100%"}>
+              {filterSelect(
+                setParamsAndOptions(setOptions, setParams),
+                "department"
+              )}
+              {filterSelect(
+                setParamsAndOptions(setOptions, setParams),
+                "fingerPrintId"
+              )}
+            </th>
+          </tr>
+          <ListHeader />
+        </thead>
         <tbody>
           <Index each={data()?.data}>
             {(item) => (

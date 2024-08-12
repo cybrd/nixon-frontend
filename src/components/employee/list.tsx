@@ -27,15 +27,20 @@ export const List = () => {
 
   return (
     <div>
-      <div class="sticky-top bg-white p-2">
-        {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
-        {filterSelect(
-          setParamsAndOptions(setOptions, setParams),
-          "fingerPrintId"
-        )}
-      </div>
       <table class="table table-striped table-hover table-bordered">
-        <thead>
+        <thead class="sticky-top bg-white p-2">
+          <tr>
+            <th colSpan={"100%"}>
+              {filterSelect(
+                setParamsAndOptions(setOptions, setParams),
+                "department"
+              )}
+              {filterSelect(
+                setParamsAndOptions(setOptions, setParams),
+                "fingerPrintId"
+              )}
+            </th>
+          </tr>
           <tr>
             <th>Finger Print Id</th>
             <th>Department</th>
