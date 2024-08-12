@@ -33,7 +33,7 @@ export const Protected: ParentComponent = (props) => {
           <Menu />
         </div>
 
-        <div class="flex-fill p-3 overflow-auto">
+        <div class="flex-fill overflow-auto">
           <Show when={Object.keys(filter.filterOptions().department).length}>
             {props.children}
           </Show>

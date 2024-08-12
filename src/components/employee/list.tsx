@@ -27,14 +27,17 @@ export const List = () => {
 
   return (
     <div>
-      {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
-      {filterSelect(
-        setParamsAndOptions(setOptions, setParams),
-        "fingerPrintId"
-      )}
+      <div class="sticky-top bg-white p-2">
+        {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
+        {filterSelect(
+          setParamsAndOptions(setOptions, setParams),
+          "fingerPrintId"
+        )}
+      </div>
       <table class="table table-striped table-hover table-bordered">
         <thead>
           <tr>
+            <th>Finger Print Id</th>
             <th>Department</th>
             <th>Position</th>
             <th>Name</th>
@@ -44,6 +47,7 @@ export const List = () => {
           <Index each={data()?.data}>
             {(item) => (
               <tr>
+                <td>{item().fingerPrintId}</td>
                 <td>{item().department}</td>
                 <td>{item().position}</td>
                 <td>{item().name}</td>

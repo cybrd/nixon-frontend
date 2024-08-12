@@ -80,11 +80,13 @@ export const List = () => {
 
   return (
     <div>
-      {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
-      {filterSelect(
-        setParamsAndOptions(setOptions, setParams),
-        "fingerPrintId"
-      )}
+      <div class="sticky-top bg-white p-2">
+        {filterSelect(setParamsAndOptions(setOptions, setParams), "department")}
+        {filterSelect(
+          setParamsAndOptions(setOptions, setParams),
+          "fingerPrintId"
+        )}
+      </div>
       <table class="table table-striped table-hover table-bordered">
         <ListHeader />
         <tbody>
