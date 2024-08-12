@@ -141,7 +141,7 @@ const textareaIncidentDescription = (
 ) => (
   <div class="form-group row p-1 align-items-center">
     <label for="inputIncidentDescription" class="col-sm-2 form-label text-end">
-      Time of Incident
+      Incident Description
     </label>
     <div class="col-sm-4">
       <textarea
