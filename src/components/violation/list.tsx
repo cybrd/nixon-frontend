@@ -26,7 +26,6 @@ const ListHeader = () => (
     <th>Violation</th>
     <th>Description</th>
     <th>Penalty</th>
-    <th>Number of Times</th>
     <th>Actions</th>
   </tr>
 );
@@ -34,10 +33,10 @@ const ListHeader = () => (
 export const List = () => {
   const [show, setShow] = createSignal(false);
   const [modalMessage, setModalMessage] = createSignal("");
-  const [modalId, setmodalId] = createSignal("");
+  const [modalId, setModalId] = createSignal("");
   const handleOpen = (message: string, id: string) => {
     setModalMessage(message);
-    setmodalId(id);
+    setModalId(id);
     setShow(true);
   };
   const handleClose = () => {
@@ -119,15 +118,20 @@ export const List = () => {
                 <td>{item().violation}</td>
                 <td>{item().description}</td>
                 <td>{item().penalty}</td>
-                <td>{item().numberOfTimes}</td>
                 <td>
-                  <a
-                    href="#"
-                    onClick={() => handleOpen(item().controlNumber, item()._id)}
-                  >
-                    Delete
-                  </a>
-                  <A href={`/violation/${item()._id}`}>Update</A>
+                  <div>
+                    <a
+                      href="#"
+                      onClick={() =>
+                        handleOpen(item().controlNumber, item()._id)
+                      }
+                    >
+                      Delete
+                    </a>
+                  </div>
+                  <div>
+                    <A href={`/violation/${item()._id}`}>Update</A>
+                  </div>
                 </td>
               </tr>
             )}

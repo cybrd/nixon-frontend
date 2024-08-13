@@ -1,11 +1,16 @@
 import { StatusCodes } from "http-status-codes";
 
+import { Violation, ViolationSummary } from "../models/violation";
 import { Query } from "../models/query";
-import { Violation } from "../models/violation";
 
 export type ViolationList = {
   counts: number;
   data: Violation[];
+};
+
+export type ViolationSummaryList = {
+  counts: number;
+  data: ViolationSummary[];
 };
 
 export const violationList = (options: Query) =>
@@ -23,6 +28,25 @@ export const violationList = (options: Query) =>
       return res.json();
     })
     .then((res): ViolationList => res);
+
+export const violationSummary = (options: Query) =>
+  fetch(
+    `${import.meta.env.VITE_API_SERVER}/violation/summary?${options.query}`,
+    {
+      headers: {
+        Authorization: `Bearer ${options.token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then((res) => {
+      if (res.status !== StatusCodes.OK) {
+        throw res;
+      }
+
+      return res.json();
+    })
+    .then((res): ViolationSummaryList => res);
 
 export const violationGet = (id: string, token = "") =>
   fetch(`${import.meta.env.VITE_API_SERVER}/violation/${id}`, {

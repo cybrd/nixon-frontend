@@ -9,25 +9,24 @@ const prev = (setter: SetParamsAndOptions) => {
   const [params] = useSearchParams();
   const currentPage = Number(params.page) || DEFAULT_PAGE;
 
-  let element: JSX.Element;
+  let element: JSX.Element = (
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="#"
+        onClick={() => setter({ page: String(currentPage - ONE) })}
+      >
+        Previous
+      </a>
+    </li>
+  );
+
   if (currentPage <= DEFAULT_PAGE) {
     element = (
       <li class="page-item disabled">
         <A class="page-link" href="#">
           Previous
         </A>
-      </li>
-    );
-  } else {
-    element = (
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="#"
-          onClick={() => setter({ page: String(currentPage - ONE) })}
-        >
-          Previous
-        </a>
       </li>
     );
   }
@@ -40,25 +39,24 @@ const next = (setter: SetParamsAndOptions, records: number) => {
   const currentPage = Number(params.page) || DEFAULT_PAGE;
   const totalPages = Math.ceil(records / DEFAULT_PAGE_SIZE);
 
-  let element: JSX.Element;
+  let element: JSX.Element = (
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="#"
+        onClick={() => setter({ page: String(currentPage + ONE) })}
+      >
+        Next
+      </a>
+    </li>
+  );
+
   if (currentPage >= totalPages) {
     element = (
       <li class="page-item disabled">
         <A class="page-link" href="#">
           Next
         </A>
-      </li>
-    );
-  } else {
-    element = (
-      <li class="page-item">
-        <a
-          class="page-link"
-          href="#"
-          onClick={() => setter({ page: String(currentPage + ONE) })}
-        >
-          Next
-        </a>
       </li>
     );
   }

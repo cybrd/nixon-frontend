@@ -16,3 +16,15 @@ export type Violation = {
   penalty: string;
   numberOfTimes: string;
 };
+
+export type ViolationSummary = {
+  employeeNumber: string;
+  employeeName: string;
+  department: string;
+  position: string;
+  under: string;
+  violation: string;
+  description: string;
+  penalty: string;
+  numberOfTimes: string;
+};
