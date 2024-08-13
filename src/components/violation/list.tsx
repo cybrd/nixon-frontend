@@ -1,7 +1,7 @@
+import { A, useSearchParams } from "@solidjs/router";
 import { Button, Modal } from "solid-bootstrap";
 import { Index, createResource, createSignal, useContext } from "solid-js";
 import toast, { Toaster } from "solid-toast";
-import { useSearchParams } from "@solidjs/router";
 
 import { violationDelete, violationList } from "../../services/violation";
 import { AuthContext } from "../../context/auth";
@@ -71,9 +71,7 @@ export const List = () => {
         )({ page: params.page || "1" });
         handleClose();
       })
-      .catch((e) => {
-        console.error(e);
-      });
+      .catch(console.error);
   };
 
   return (
@@ -129,6 +127,7 @@ export const List = () => {
                   >
                     Delete
                   </a>
+                  <A href={`/violation/${item()._id}`}>Update</A>
                 </td>
               </tr>
             )}

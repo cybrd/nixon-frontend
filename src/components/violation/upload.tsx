@@ -25,9 +25,7 @@ export const Upload = () => {
         form.reset();
         setCsv([]);
       })
-      .catch((e) => {
-        console.error(e);
-      });
+      .catch(console.error);
   };
 
   const read = (file: File) => {

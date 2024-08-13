@@ -24,6 +24,22 @@ export const violationList = (options: Query) =>
     })
     .then((res): ViolationList => res);
 
+export const violationGet = (id: string, token = "") =>
+  fetch(`${import.meta.env.VITE_API_SERVER}/violation/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.status !== StatusCodes.OK) {
+        throw res;
+      }
+
+      return res.json();
+    })
+    .then((res): Violation => res);
+
 export const violationCreate = (data: Violation, token = "") =>
   fetch(`${import.meta.env.VITE_API_SERVER}/violation/create`, {
     body: JSON.stringify(data),
@@ -32,6 +48,22 @@ export const violationCreate = (data: Violation, token = "") =>
       "Content-Type": "application/json",
     },
     method: "POST",
+  }).then((res) => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
+
+    return res.json();
+  });
+
+export const violationUpdate = (id: string, data: Violation, token = "") =>
+  fetch(`${import.meta.env.VITE_API_SERVER}/violation/${id}`, {
+    body: JSON.stringify(data),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
   }).then((res) => {
     if (res.status !== StatusCodes.OK) {
       throw res;

@@ -198,9 +198,7 @@ export const Create = () => {
         form.reset();
         [fields, setFields] = createStore<Partial<Violation>>({});
       })
-      .catch((e) => {
-        console.error(e);
-      });
+      .catch(console.error);
   };
 
   return (
