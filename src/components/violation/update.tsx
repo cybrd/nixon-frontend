@@ -12,26 +12,31 @@ import moment from "moment";
 const inputControlNumber = (
   data: Resource<Violation>,
   setFields: SetStoreFunction<Partial<Violation>>
-) => (
-  <div class="form-group row p-1 align-items-center">
-    <label for="inputControlNumber" class="col-sm-2 form-label text-end">
-      Control Number
-    </label>
-    <div class="col-sm-4">
-      <input
-        id="inputControlNumber"
-        class="form-control"
-        onInput={(e) => setFields("controlNumber", e.target.value)}
-        value={data()?.controlNumber}
-      />
+) => {
+  setFields("controlNumber", data()?.controlNumber);
+
+  return (
+    <div class="form-group row p-1 align-items-center">
+      <label for="inputControlNumber" class="col-sm-2 form-label text-end">
+        Control Number
+      </label>
+      <div class="col-sm-4">
+        <input
+          id="inputControlNumber"
+          class="form-control"
+          onInput={(e) => setFields("controlNumber", e.target.value)}
+          value={data()?.controlNumber}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const selectEmployeeNumber = (
   data: Resource<Violation>,
   setFields: SetStoreFunction<Partial<Violation>>
 ) => {
+  setFields("employeeNumber", data()?.employeeNumber);
   const filter = useContext(FilterOptionsContext);
   const options = filter.filterOptions().fingerPrintId;
 
@@ -85,6 +90,8 @@ const selectDepartmentHead = (
             const [_, employeeName] = v.split(" - ");
 
             if (employeeName === data()?.deptHead) {
+              setFields("deptHead", k);
+
               return (
                 <option value={k} selected>
                   {v}
@@ -105,6 +112,7 @@ const inputDateOfIncident = (
   setFields: SetStoreFunction<Partial<Violation>>
 ) => {
   const date = moment(data()?.dateOfIncident).format("yyyy-MM-DD");
+  setFields("dateOfIncident", date);
 
   return (
     <div class="form-group row p-1 align-items-center">
@@ -130,7 +138,8 @@ const inputTimeOfIncident = (
 ) => {
   const time = moment(
     `${data()?.dateOfIncident} ${data()?.timeOfIncident}`
-  ).format("HH:mm:ss");
+  ).format("HH:mm");
+  setFields("timeOfIncident", time);
 
   return (
     <div class="form-group row p-1 align-items-center">
@@ -172,6 +181,8 @@ const selectReportedBy = (
             const [_, employeeName] = v.split(" - ");
 
             if (employeeName === data()?.reportedBy) {
+              setFields("reportedBy", k);
+
               return (
                 <option value={k} selected>
                   {v}
@@ -190,21 +201,28 @@ const selectReportedBy = (
 const textareaIncidentDescription = (
   data: Resource<Violation>,
   setFields: SetStoreFunction<Partial<Violation>>
-) => (
-  <div class="form-group row p-1 align-items-center">
-    <label for="inputIncidentDescription" class="col-sm-2 form-label text-end">
-      Incident Description
-    </label>
-    <div class="col-sm-4">
-      <textarea
-        id="inputIncidentDescription"
-        class="form-control"
-        onInput={(e) => setFields("incidentDescription", e.target.value)}
-        value={data()?.incidentDescription}
-      />
+) => {
+  setFields("incidentDescription", data()?.incidentDescription);
+
+  return (
+    <div class="form-group row p-1 align-items-center">
+      <label
+        for="inputIncidentDescription"
+        class="col-sm-2 form-label text-end"
+      >
+        Incident Description
+      </label>
+      <div class="col-sm-4">
+        <textarea
+          id="inputIncidentDescription"
+          class="form-control"
+          onInput={(e) => setFields("incidentDescription", e.target.value)}
+          value={data()?.incidentDescription}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const selectHandbook = (
   data: Resource<Violation>,
@@ -229,6 +247,8 @@ const selectHandbook = (
             const handBookKey = `${data()?.under}-${data()?.violation}`;
 
             if (k === handBookKey) {
+              setFields("under", k);
+
               return (
                 <option value={k} selected>
                   {v}

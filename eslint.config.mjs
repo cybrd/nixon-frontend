@@ -16,6 +16,7 @@ export default tseslint.config(eslint.configs.all, ...tseslint.configs.strict, {
     ],
     "id-length": 0,
     "init-declarations": 0,
+    "max-lines": ["error", { max: 500 }],
     "max-lines-per-function": ["error", { max: 200 }],
     "max-statements": ["error", { max: 20 }],
     "new-cap": 0,
