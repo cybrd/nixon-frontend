@@ -25,6 +25,7 @@ const ListHeader = () => (
     <th>Under</th>
     <th>Violation</th>
     <th>Description</th>
+    <th>Number of Times</th>
     <th>Penalty</th>
     <th>Actions</th>
   </tr>
@@ -117,6 +118,7 @@ export const List = () => {
                 <td>{item().under}</td>
                 <td>{item().violation}</td>
                 <td>{item().description}</td>
+                <td>{item().numberOfTimes}</td>
                 <td>{item().penalty}</td>
                 <td>
                   <div>
