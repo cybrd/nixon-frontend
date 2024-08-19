@@ -1,3 +1,5 @@
+import { Employee } from "./employee";
+
 export type Violation = {
   _id: string;
   controlNumber: string;
@@ -18,13 +20,9 @@ export type Violation = {
 };
 
 export type ViolationSummary = {
-  employeeNumber: string;
-  employeeName: string;
-  department: string;
-  position: string;
-  under: string;
-  violation: string;
-  description: string;
-  penalty: string;
-  numberOfTimes: string;
+  employee: Employee;
+  violations: {
+    data: Violation[];
+    counts: number;
+  };
 };

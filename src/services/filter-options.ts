@@ -8,12 +8,10 @@ export const filterOptionsList = (token = "") =>
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => {
-      if (res.status !== StatusCodes.OK) {
-        throw res;
-      }
+  }).then((res): Promise<FilterOptions> => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
 
-      return res.json();
-    })
-    .then((res): FilterOptions => res);
+    return res.json();
+  });

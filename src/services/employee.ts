@@ -13,12 +13,10 @@ export const employeeList = (options: Query) =>
       Authorization: `Bearer ${options.token}`,
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => {
-      if (res.status !== StatusCodes.OK) {
-        throw res;
-      }
+  }).then((res): Promise<EmployeeList> => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
 
-      return res.json();
-    })
-    .then((res): EmployeeList => res);
+    return res.json();
+  });

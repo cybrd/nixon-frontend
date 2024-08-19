@@ -48,7 +48,6 @@ export const List = () => {
   const [params, setParams] = useSearchParams();
   const query = new URLSearchParams({
     department: params.department || "",
-    fingerPrintId: params.fingerPrintId || "",
     page: params.page || "",
   }).toString();
   const [options, setOptions] = createSignal<Query>({
@@ -84,10 +83,6 @@ export const List = () => {
                 setParamsAndOptions(setOptions, setParams),
                 "department"
               )}
-              {filterSelect(
-                setParamsAndOptions(setOptions, setParams),
-                "fingerPrintId"
-              )}
             </th>
           </tr>
           <ListHeader />
@@ -97,15 +92,10 @@ export const List = () => {
             {(item) => (
               <tr>
                 <td>{item().controlNumber}</td>
-                <td
-                  onClick={() => {
-                    setParamsAndOptions(
-                      setOptions,
-                      setParams
-                    )({ fingerPrintId: item().employeeNumber, page: "1" });
-                  }}
-                >
-                  {item().employeeNumber}
+                <td>
+                  <A href={`/violation/summary/${item().employeeNumber}`}>
+                    {item().employeeNumber}
+                  </A>
                 </td>
                 <td>{item().employeeName}</td>
                 <td>{item().department}</td>

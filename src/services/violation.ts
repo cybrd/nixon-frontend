@@ -8,45 +8,38 @@ export type ViolationList = {
   data: Violation[];
 };
 
-export type ViolationSummaryList = {
-  counts: number;
-  data: ViolationSummary[];
-};
-
 export const violationList = (options: Query) =>
   fetch(`${import.meta.env.VITE_API_SERVER}/violation?${options.query}`, {
     headers: {
       Authorization: `Bearer ${options.token}`,
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => {
-      if (res.status !== StatusCodes.OK) {
-        throw res;
-      }
+  }).then((res): Promise<ViolationList> => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
 
-      return res.json();
-    })
-    .then((res): ViolationList => res);
+    return res.json();
+  });
 
 export const violationSummary = (options: Query) =>
   fetch(
-    `${import.meta.env.VITE_API_SERVER}/violation/summary?${options.query}`,
+    `${import.meta.env.VITE_API_SERVER}/violation/summary/${options.id}?${
+      options.query
+    }`,
     {
       headers: {
         Authorization: `Bearer ${options.token}`,
         "Content-Type": "application/json",
       },
     }
-  )
-    .then((res) => {
-      if (res.status !== StatusCodes.OK) {
-        throw res;
-      }
+  ).then((res): Promise<ViolationSummary> => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
 
-      return res.json();
-    })
-    .then((res): ViolationSummaryList => res);
+    return res.json();
+  });
 
 export const violationGet = (id: string, token = "") =>
   fetch(`${import.meta.env.VITE_API_SERVER}/violation/${id}`, {
@@ -54,15 +47,13 @@ export const violationGet = (id: string, token = "") =>
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => {
-      if (res.status !== StatusCodes.OK) {
-        throw res;
-      }
+  }).then((res): Promise<Violation> => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
 
-      return res.json();
-    })
-    .then((res): Violation => res);
+    return res.json();
+  });
 
 export const violationCreate = (data: Violation, token = "") =>
   fetch(`${import.meta.env.VITE_API_SERVER}/violation/create`, {

@@ -11,7 +11,7 @@ export const Violation = () => (
     <Route path="/" component={List} />
     <Route path="/create" component={Create} />
     <Route path="/upload" component={Upload} />
-    <Route path="/summary" component={Summary} />
+    <Route path={["/summary", "/summary/:id"]} component={Summary} />
     <Route path="/:id" component={Update} />
   </Route>
 );
