@@ -7,26 +7,28 @@ import { Query } from "../../models/query";
 export const setParamsAndOptions =
   (
     setOptions: Setter<Query>,
-    setParams: (params: SetParams, options?: Partial<NavigateOptions>) => void
+    setParams: (params: SetParams, options?: Partial<NavigateOptions>) => void,
+    currentOptions: Partial<Query> = {}
   ) =>
-  (newParams: Record<string, string>) => {
+  (newSearchParams: Record<string, string>) => {
     const auth = useContext(AuthContext);
 
-    const currentParams = Object.fromEntries(
+    const currentSearchParams = Object.fromEntries(
       new URLSearchParams(document.location.search)
     );
 
-    const updatedParams = {
-      ...currentParams,
-      ...newParams,
+    const updatedSearchParams = {
+      ...currentSearchParams,
+      ...newSearchParams,
     };
 
-    setParams(updatedParams);
-    const query = new URLSearchParams(updatedParams).toString();
-    setOptions({
+    setParams(updatedSearchParams);
+    const query = new URLSearchParams(updatedSearchParams).toString();
+    const newOptions = {
       query,
       token: auth.user()?.token || "",
-    });
+    };
+    setOptions({ ...currentOptions, ...newOptions });
   };
 
 export type SetParamsAndOptions = ReturnType<typeof setParamsAndOptions>;

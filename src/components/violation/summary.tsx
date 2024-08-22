@@ -6,6 +6,7 @@ import {
   useContext,
 } from "solid-js";
 import { useNavigate, useParams, useSearchParams } from "@solidjs/router";
+import { createStore } from "solid-js/store";
 
 import { AuthContext } from "../../context/auth";
 import { Employee } from "../../models/employee";
@@ -52,14 +53,20 @@ const employeeData = (employee: Partial<Employee> = {}) => (
   </tr>
 );
 
+type DateFromTo = {
+  dateFrom: string;
+  dateTo: string;
+};
 export const Summary = () => {
   const auth = useContext(AuthContext);
   const filter = useContext(FilterOptionsContext);
   const params = useParams();
+  const [fields, setFields] = createStore<Partial<DateFromTo>>({});
   const optionsFingerPrintId = filter.filterOptions().fingerPrintId;
   const [searchParams, setSearchParams] = useSearchParams();
   const query = new URLSearchParams({
-    fingerPrintId: searchParams.fingerPrintId || "",
+    dateFrom: searchParams.dateFrom || "",
+    dateTo: searchParams.dateTo || "",
     page: searchParams.page || "",
   }).toString();
   const [options, setOptions] = createSignal<Query>({
@@ -75,29 +82,70 @@ export const Summary = () => {
     nav(`/violation/summary/${id}`);
   };
 
+  const handleDateChange = (event: Event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const newQuery = new URLSearchParams({
+      dateFrom: fields.dateFrom || "",
+      dateTo: fields.dateTo || "",
+      page: searchParams.page || "",
+    }).toString();
+    setOptions({ ...options(), query: newQuery });
+    nav(`/violation/summary/${params.id}?${newQuery.toString()}`);
+  };
+
   return (
     <div>
       <table class="table table-striped table-hover table-bordered">
         <thead class="sticky-top bg-white p-2">
           <tr>
             <th colSpan={"100%"}>
-              <select
-                id="fingerPrintId"
-                onChange={(e) => handleEmployeeChange(e.currentTarget.value)}
-              >
-                <option value="">----</option>
-                {Object.entries(optionsFingerPrintId).map(([k, v]) => {
-                  if (k === params.id) {
-                    return (
-                      <option value={k} selected>
-                        {v}
-                      </option>
-                    );
-                  }
+              <div>
+                <label for="fingerPrintId" class="form-label">
+                  Employee
+                </label>
+                <select
+                  id="fingerPrintId"
+                  onChange={(e) => handleEmployeeChange(e.currentTarget.value)}
+                >
+                  <option value="">----</option>
+                  {Object.entries(optionsFingerPrintId).map(([k, v]) => {
+                    if (k === params.id) {
+                      return (
+                        <option value={k} selected>
+                          {v}
+                        </option>
+                      );
+                    }
 
-                  return <option value={k}>{v}</option>;
-                })}
-              </select>
+                    return <option value={k}>{v}</option>;
+                  })}
+                </select>
+              </div>
+              <form onSubmit={handleDateChange}>
+                <div>
+                  <label for="dateFrom" class="form-label">
+                    Date From
+                  </label>
+                  <input
+                    type="date"
+                    id="dateFrom"
+                    onInput={(e) => setFields("dateFrom", e.target.value)}
+                  />
+
+                  <label for="dateTo" class="form-label">
+                    Date To
+                  </label>
+                  <input
+                    type="date"
+                    id="dateTo"
+                    onInput={(e) => setFields("dateTo", e.target.value)}
+                  />
+
+                  <button>Filter</button>
+                </div>
+              </form>
             </th>
           </tr>
           <Show when={data()?.employee}>{employeeData(data()?.employee)}</Show>
@@ -118,7 +166,7 @@ export const Summary = () => {
         </tbody>
       </table>
       {pagination(
-        setParamsAndOptions(setOptions, setSearchParams),
+        setParamsAndOptions(setOptions, setSearchParams, options()),
         data()?.violations.counts
       )}
     </div>
