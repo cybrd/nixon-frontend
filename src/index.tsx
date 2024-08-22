@@ -1,4 +1,5 @@
 import { Route, Router } from "@solidjs/router";
+import { MetaProvider } from "@solidjs/meta";
 import { render } from "solid-js/web";
 
 import "bootstrap/scss/bootstrap.scss";
@@ -24,19 +25,21 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 render(
   () => (
     <div class="container-fluid">
-      <Router>
-        <AuthProvider>
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
+      <MetaProvider>
+        <Router>
+          <AuthProvider>
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
 
-          <Route path="/" component={Protected}>
-            <Route path="/" component={Home} />
-            <Employee />
-            <Handbook />
-            <Violation />
-          </Route>
-        </AuthProvider>
-      </Router>
+            <Route component={Protected}>
+              <Route path="/" component={Home} />
+              <Employee />
+              <Handbook />
+              <Violation />
+            </Route>
+          </AuthProvider>
+        </Router>
+      </MetaProvider>
     </div>
   ),
   root

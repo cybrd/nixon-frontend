@@ -40,9 +40,7 @@ export const List = () => {
     setModalId(id);
     setShow(true);
   };
-  const handleClose = () => {
-    setShow(false);
-  };
+  const handleClose = () => setShow(false);
 
   const auth = useContext(AuthContext);
   const [params, setParams] = useSearchParams();
