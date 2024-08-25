@@ -2,7 +2,7 @@ import { A } from "@solidjs/router";
 import { type Component } from "solid-js";
 
 export const Menu: Component = () => (
-  <div class="text-nowrap p-2">
+  <div class="text-nowrap p-2 d-print-none">
     <div>
       <A href="/">Home</A>
     </div>
