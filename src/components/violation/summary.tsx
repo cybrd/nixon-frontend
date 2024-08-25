@@ -78,8 +78,12 @@ export const Summary = () => {
   const nav = useNavigate();
 
   const handleEmployeeChange = (id: string) => {
-    setOptions({ ...options(), id });
-    nav(`/violation/summary/${id}`);
+    const newQuery = new URLSearchParams({
+      dateFrom: fields.dateFrom || "",
+      dateTo: fields.dateTo || "",
+    }).toString();
+    setOptions({ ...options(), id, newQuery });
+    nav(`/violation/summary/${id}?${newQuery.toString()}`);
   };
 
   const handleDateChange = (event: Event) => {
