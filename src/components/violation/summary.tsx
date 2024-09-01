@@ -18,10 +18,11 @@ import { violationSummary } from "../../services/violation";
 
 const ListHeader = () => (
   <tr>
+    <th>Control #</th>
+    <th>Date of Incident</th>
+    <th>Description of the Incident</th>
     <th>Under</th>
     <th>Violation</th>
-    <th>Description</th>
-    <th>Penalty</th>
     <th>Number of Times</th>
   </tr>
 );
@@ -159,10 +160,11 @@ export const Summary = () => {
           <Index each={data()?.violations.data}>
             {(item) => (
               <tr>
+                <td>{item().controlNumber}</td>
+                <td>{item().dateOfIncident}</td>
+                <td>{item().incidentDescription}</td>
                 <td>{item().under}</td>
                 <td>{item().violation}</td>
-                <td>{item().description}</td>
-                <td>{item().penalty}</td>
                 <td>{item().numberOfTimes}</td>
               </tr>
             )}
