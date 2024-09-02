@@ -10,10 +10,13 @@ export const Menu: Component = () => (
       <A href="/employee">Employee List</A>
     </div>
     <div>
+      <A href="/employee/create">Employee Create</A>
+    </div>
+    <div>
       <A href="/handbook">Handbook</A>
     </div>
     <div>
-      <A href="/violation">Violation</A>
+      <A href="/violation">Violation List</A>
     </div>
     <div>
       <A href="/violation/summary">Violation Summary</A>

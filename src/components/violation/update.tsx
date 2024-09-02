@@ -286,10 +286,6 @@ export const Update = () => {
           success: <b>Done</b>,
         }
       )
-      .then(() => {
-        const form = document.getElementById("form") as HTMLFormElement;
-        form.reset();
-      })
       .catch(console.error);
   };
 
