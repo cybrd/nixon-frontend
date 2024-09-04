@@ -8,14 +8,14 @@ import { violationUploadFile } from "../../services/violation";
 export const Upload = () => {
   const auth = useContext(AuthContext);
 
-  const [csv, setCsv] = createSignal<unknown[]>([]);
+  const [jsonString, setJsonString] = createSignal<string>("");
 
   const submit = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
 
     toast
-      .promise(violationUploadFile(csv(), auth.user()?.token), {
+      .promise(violationUploadFile(jsonString(), auth.user()?.token), {
         error: "An error occurred 😔",
         loading: "Loading",
         success: <b>Done</b>,
@@ -23,16 +23,17 @@ export const Upload = () => {
       .then(() => {
         const form = document.getElementById("form") as HTMLFormElement;
         form.reset();
-        setCsv([]);
+        setJsonString("");
       })
       .catch(console.error);
   };
 
   const read = (file: File) => {
     const reader = new FileReader();
-    reader.addEventListener("load", () =>
-      setCsv(parse(reader.result as string).data)
-    );
+    reader.addEventListener("load", () => {
+      const { data } = parse(reader.result as string, { header: true });
+      setJsonString(JSON.stringify(data));
+    });
 
     reader.readAsText(file);
   };

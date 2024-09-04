@@ -101,9 +101,9 @@ export const violationDelete = (id: string, token = "") =>
     return res.json();
   });
 
-export const violationUploadFile = (arrayStr: unknown[], token = "") =>
+export const violationUploadFile = (jsonString: string, token = "") =>
   fetch(`${import.meta.env.VITE_API_SERVER}/violation/upload`, {
-    body: JSON.stringify(arrayStr),
+    body: jsonString,
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
