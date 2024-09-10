@@ -66,7 +66,6 @@ export const Summary = () => {
   const query = new URLSearchParams({
     dateFrom: searchParams.dateFrom || "",
     dateTo: searchParams.dateTo || "",
-    page: searchParams.page || "",
   }).toString();
   const [options, setOptions] = createSignal<Query>({
     id: params.id,
@@ -92,7 +91,6 @@ export const Summary = () => {
     const newQuery = new URLSearchParams({
       dateFrom: fields.dateFrom || "",
       dateTo: fields.dateTo || "",
-      page: searchParams.page || "",
     }).toString();
     setOptions({ ...options(), query: newQuery });
     nav(`/violation/summary/${params.id}?${newQuery.toString()}`);
