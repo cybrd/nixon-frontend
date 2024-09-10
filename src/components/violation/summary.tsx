@@ -12,8 +12,6 @@ import { AuthContext } from "../../context/auth";
 import { Employee } from "../../models/employee";
 import { FilterOptionsContext } from "../../context/filter-options";
 import { Query } from "../../models/query";
-import { pagination } from "../helper/pagination";
-import { setParamsAndOptions } from "../helper/params";
 import { violationSummary } from "../../services/violation";
 
 const ListHeader = () => (
@@ -64,7 +62,7 @@ export const Summary = () => {
   const params = useParams();
   const [fields, setFields] = createStore<Partial<DateFromTo>>({});
   const optionsFingerPrintId = filter.filterOptions().fingerPrintId;
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const query = new URLSearchParams({
     dateFrom: searchParams.dateFrom || "",
     dateTo: searchParams.dateTo || "",
@@ -171,10 +169,6 @@ export const Summary = () => {
           </Index>
         </tbody>
       </table>
-      {pagination(
-        setParamsAndOptions(setOptions, setSearchParams, options()),
-        data()?.violations.counts
-      )}
     </div>
   );
 };
