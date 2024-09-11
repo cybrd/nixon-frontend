@@ -100,7 +100,7 @@ export const Summary = () => {
     <div>
       <table class="table table-striped table-hover table-bordered">
         <thead class="sticky-top bg-white p-2">
-          <tr>
+          <tr class="d-print-none">
             <th colSpan={"100%"}>
               <div>
                 <label for="fingerPrintId" class="form-label">

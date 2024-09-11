@@ -27,17 +27,15 @@ export const Protected: ParentComponent = (props) => {
   }
 
   return (
-    <div class="vh-100 d-flex flex-column overflow-hidden">
-      <div class="flex-fill d-flex flex-row overflow-auto">
-        <div class="d-flex flex-column">
-          <Menu />
-        </div>
+    <div class="d-flex">
+      <div class="sticky-top h-100">
+        <Menu />
+      </div>
 
-        <div class="flex-fill overflow-auto">
-          <Show when={Object.keys(filter.filterOptions().department).length}>
-            {props.children}
-          </Show>
-        </div>
+      <div class="flex-fill">
+        <Show when={Object.keys(filter.filterOptions().department).length}>
+          {props.children}
+        </Show>
       </div>
     </div>
   );
