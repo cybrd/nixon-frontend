@@ -4,6 +4,7 @@ import { Title } from "@solidjs/meta";
 
 import { Create } from "./create";
 import { List } from "./list";
+import { Print } from "./print";
 import { Summary } from "./summary";
 import { Update } from "./update";
 import { Upload } from "./upload";
@@ -13,6 +14,7 @@ export const Violation = () => (
     <Route path="/" component={List} />
     <Route path="/create" component={Create} />
     <Route path="/upload" component={Upload} />
+    <Route path="/print/:id" component={Print} />
     <Route path={["/summary", "/summary/:id"]} component={Summary} />
     <Route path="/:id" component={Update} />
   </Route>

@@ -122,6 +122,11 @@ export const List = () => {
                   <div>
                     <A href={`/violation/${item()._id}`}>Update</A>
                   </div>
+                  <div>
+                    <A href={`/violation/print/${item().controlNumber}`}>
+                      Print
+                    </A>
+                  </div>
                 </td>
               </tr>
             )}

@@ -55,6 +55,23 @@ export const violationGet = (id: string, token = "") =>
     return res.json();
   });
 
+export const violationGetByControlNumber = (
+  controlNumber: string,
+  token = ""
+) =>
+  fetch(`${import.meta.env.VITE_API_SERVER}/violation/print/${controlNumber}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  }).then((res): Promise<Violation> => {
+    if (res.status !== StatusCodes.OK) {
+      throw res;
+    }
+
+    return res.json();
+  });
+
 export const violationCreate = (data: Violation, token = "") =>
   fetch(`${import.meta.env.VITE_API_SERVER}/violation/create`, {
     body: JSON.stringify(data),
