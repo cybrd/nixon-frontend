@@ -3,6 +3,7 @@ import { useParams } from "@solidjs/router";
 
 import { AuthContext } from "../../context/auth";
 import { violationGetByControlNumber } from "../../services/violation";
+import { Violation } from "../../models/violation";
 
 const PrintHeader = () => (
   <>
@@ -99,9 +100,6 @@ const PrintNotes = () => (
         <tr>
           <td class="border-bottom border-dark w-100">&nbsp;</td>
         </tr>
-        <tr>
-          <td class="border-bottom border-dark w-100">&nbsp;</td>
-        </tr>
       </tbody>
     </table>
 
@@ -114,18 +112,12 @@ const PrintNotes = () => (
         <tr>
           <td class="border-bottom border-dark w-100">&nbsp;</td>
         </tr>
-        <tr>
-          <td class="border-bottom border-dark w-100">&nbsp;</td>
-        </tr>
       </tbody>
     </table>
 
     <h6 class="fw-bold pt-4">Other Individuals who may have information:</h6>
     <table class="w-100">
       <tbody>
-        <tr>
-          <td class="border-bottom border-dark w-100">&nbsp;</td>
-        </tr>
         <tr>
           <td class="border-bottom border-dark w-100">&nbsp;</td>
         </tr>
@@ -147,9 +139,6 @@ const PrintNotes = () => (
         <tr>
           <td class="border-bottom border-dark w-100">&nbsp;</td>
         </tr>
-        <tr>
-          <td class="border-bottom border-dark w-100">&nbsp;</td>
-        </tr>
       </tbody>
     </table>
 
@@ -162,18 +151,12 @@ const PrintNotes = () => (
         <tr>
           <td class="border-bottom border-dark w-100">&nbsp;</td>
         </tr>
-        <tr>
-          <td class="border-bottom border-dark w-100">&nbsp;</td>
-        </tr>
       </tbody>
     </table>
 
     <h6 class="fw-bold pt-4">Next Action Step if Problem Continues:</h6>
     <table class="w-100">
       <tbody>
-        <tr>
-          <td class="border-bottom border-dark w-100">&nbsp;</td>
-        </tr>
         <tr>
           <td class="border-bottom border-dark w-100">&nbsp;</td>
         </tr>
@@ -213,7 +196,7 @@ const PrintNotes = () => (
   </>
 );
 
-const PrintFooter = () => (
+const PrintFooter = (data: Violation | undefined) => (
   <>
     <p class="pt-4">
       I acknowledge receipt of this disciplinary action and that its contents
@@ -235,8 +218,8 @@ const PrintFooter = () => (
       style="border-spacing: 10px; border-collapse: separate"
     >
       <tbody>
-        <tr style="height: 50px">
-          <td>&nbsp;</td>
+        <tr style="height: 40px">
+          <td class="text-center">{data?.employeeName}</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -245,15 +228,15 @@ const PrintFooter = () => (
           </td>
           <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
-        <tr style="height: 75px">
+        <tr style="height: 25px">
           <td class="w-50 text-center">
             <input type="checkbox" class="mx-1" />
             Refused to sign
           </td>
           <td class="w-50">&nbsp;</td>
         </tr>
-        <tr style="height: 50px">
-          <td>&nbsp;</td>
+        <tr style="height: 40px">
+        <td class="text-center">{data?.deptHead}</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -262,8 +245,8 @@ const PrintFooter = () => (
           </td>
           <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
-        <tr style="height: 50px">
-          <td>&nbsp;</td>
+        <tr style="height: 40px">
+        <td class="text-center">MERLITA VASQUEZ</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -272,15 +255,15 @@ const PrintFooter = () => (
           </td>
           <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
-        <tr style="height: 50px">
-          <td>&nbsp;</td>
+        <tr style="height: 40px">
+        <td class="text-center">EDSON GO</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td class="w-50 m-2 text-center border-top border-dark">
+          <td class="w-50 text-center border-top border-dark">
             Manager's Printed Name & Signature
           </td>
-          <td class="w-50 m-2 text-center border-top border-dark">Date</td>
+          <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
       </tbody>
     </table>
@@ -346,13 +329,7 @@ export const Print = () => {
         <table class="w-100">
           <tbody>
             <tr>
-              <td class="border-bottom border-dark w-100">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="border-bottom border-dark w-100">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="border-bottom border-dark w-100">&nbsp;</td>
+              <td class="border-bottom border-dark w-100">{data()?.incidentDescription}</td>
             </tr>
             <tr>
               <td class="border-bottom border-dark w-100">&nbsp;</td>
@@ -373,7 +350,7 @@ export const Print = () => {
         <div class="p-2 fw-bold">Reported by: {data()?.reportedBy}</div>
 
         <PrintNotes />
-        <PrintFooter />
+        {PrintFooter(data())}
       </div>
     </Show>
   );
