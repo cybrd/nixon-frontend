@@ -17,6 +17,7 @@ export type Violation = {
   description: string;
   penalty: string;
   numberOfTimes: string;
+  action: string;
 };
 
 export type ViolationSummary = {

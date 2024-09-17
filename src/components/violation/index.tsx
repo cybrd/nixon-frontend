@@ -7,6 +7,7 @@ import { List } from "./list";
 import { Print } from "./print";
 import { Summary } from "./summary";
 import { Update } from "./update";
+import { UpdateAction } from "./update-action";
 import { Upload } from "./upload";
 
 export const Violation = () => (
@@ -16,6 +17,7 @@ export const Violation = () => (
     <Route path="/upload" component={Upload} />
     <Route path="/print/:id" component={Print} />
     <Route path={["/summary", "/summary/:id"]} component={Summary} />
+    <Route path="/updateAction/:id" component={UpdateAction} />
     <Route path="/:id" component={Update} />
   </Route>
 );

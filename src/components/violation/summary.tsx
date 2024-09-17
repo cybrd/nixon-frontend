@@ -21,6 +21,7 @@ const ListHeader = () => (
     <th>Description of the Incident</th>
     <th>Under</th>
     <th>Violation</th>
+    <th>Action</th>
     <th>Number of Times</th>
   </tr>
 );
@@ -161,6 +162,7 @@ export const Summary = () => {
                 <td>{item().incidentDescription}</td>
                 <td>{item().under}</td>
                 <td>{item().violation}</td>
+                <td>{item().action}</td>
                 <td>{item().numberOfTimes}</td>
               </tr>
             )}

@@ -27,6 +27,7 @@ const ListHeader = () => (
     <th>Description</th>
     <th>Number of Times</th>
     <th>Penalty</th>
+    <th>Action</th>
     <th>Actions</th>
   </tr>
 );
@@ -108,6 +109,7 @@ export const List = () => {
                 <td>{item().description}</td>
                 <td>{item().numberOfTimes}</td>
                 <td>{item().penalty}</td>
+                <td>{item().action}</td>
                 <td>
                   <div>
                     <a
@@ -127,6 +129,15 @@ export const List = () => {
                   <div>
                     <A href={`/violation/print/${item().controlNumber}`}>
                       Print
+                    </A>
+                  </div>
+                  <div>
+                    <A
+                      href={`/violation/updateAction/${item()._id}?${
+                        options().query
+                      }`}
+                    >
+                      Update Action
                     </A>
                   </div>
                 </td>
