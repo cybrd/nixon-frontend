@@ -74,6 +74,7 @@ const selectDepartmentHead = (
 ) => {
   const filter = useContext(FilterOptionsContext);
   const options = filter.filterOptions().fingerPrintId;
+  let found = false;
 
   return (
     <div class="form-group row p-1">
@@ -90,6 +91,7 @@ const selectDepartmentHead = (
             const [_, employeeName] = v.split(" - ");
 
             if (employeeName === data()?.deptHead) {
+              found = true;
               setFields("deptHead", k);
 
               return (
@@ -102,6 +104,7 @@ const selectDepartmentHead = (
             return <option value={k}>{v}</option>;
           })}
         </select>
+        {!found && data()?.deptHead}
       </div>
     </div>
   );
@@ -165,6 +168,7 @@ const selectReportedBy = (
 ) => {
   const filter = useContext(FilterOptionsContext);
   const options = filter.filterOptions().fingerPrintId;
+  let found = false;
 
   return (
     <div class="form-group row p-1">
@@ -181,6 +185,7 @@ const selectReportedBy = (
             const [_, employeeName] = v.split(" - ");
 
             if (employeeName === data()?.reportedBy) {
+              found = true;
               setFields("reportedBy", k);
 
               return (
@@ -193,6 +198,7 @@ const selectReportedBy = (
             return <option value={k}>{v}</option>;
           })}
         </select>
+        {!found && data()?.reportedBy}
       </div>
     </div>
   );
