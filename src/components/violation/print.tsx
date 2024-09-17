@@ -215,11 +215,11 @@ const PrintFooter = (data: Violation | undefined) => (
 
     <table
       class="w-100"
-      style="border-spacing: 10px; border-collapse: separate"
+      style="border-spacing: 10px 0; border-collapse: separate"
     >
       <tbody>
         <tr style="height: 40px">
-          <td class="text-center">{data?.employeeName}</td>
+          <td class="text-center align-bottom">{data?.employeeName}</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -236,7 +236,7 @@ const PrintFooter = (data: Violation | undefined) => (
           <td class="w-50">&nbsp;</td>
         </tr>
         <tr style="height: 40px">
-        <td class="text-center">{data?.deptHead}</td>
+          <td class="text-center align-bottom">{data?.deptHead}</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -246,7 +246,7 @@ const PrintFooter = (data: Violation | undefined) => (
           <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
         <tr style="height: 40px">
-        <td class="text-center">MERLITA VASQUEZ</td>
+          <td class="text-center align-bottom">MERLITA VASQUEZ</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -256,7 +256,7 @@ const PrintFooter = (data: Violation | undefined) => (
           <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
         <tr style="height: 40px">
-        <td class="text-center">EDSON GO</td>
+          <td class="text-center align-bottom">EDSON GO</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -329,7 +329,9 @@ export const Print = () => {
         <table class="w-100">
           <tbody>
             <tr>
-              <td class="border-bottom border-dark w-100">{data()?.incidentDescription}</td>
+              <td class="border-bottom border-dark w-100">
+                {data()?.incidentDescription}
+              </td>
             </tr>
             <tr>
               <td class="border-bottom border-dark w-100">&nbsp;</td>
