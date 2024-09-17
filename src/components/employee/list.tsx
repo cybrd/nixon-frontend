@@ -95,7 +95,9 @@ export const List = () => {
                     </a>
                   </div>
                   <div>
-                    <A href={`/employee/${item()._id}`}>Update</A>
+                    <A href={`/employee/${item()._id}?${options().query}`}>
+                      Update
+                    </A>
                   </div>
                 </td>
               </tr>

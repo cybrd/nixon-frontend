@@ -1,7 +1,7 @@
 import { Resource, Show, createResource, useContext } from "solid-js";
 import { SetStoreFunction, createStore } from "solid-js/store";
 import toast, { Toaster } from "solid-toast";
-import { useParams } from "@solidjs/router";
+import { useNavigate, useParams, useSearchParams } from "@solidjs/router";
 
 import { employeeGet, employeeUpdate } from "../../services/employee";
 import { AuthContext } from "../../context/auth";
@@ -86,6 +86,13 @@ const inputName = (
 export const Update = () => {
   const auth = useContext(AuthContext);
   const params = useParams();
+  const [searchParams] = useSearchParams();
+  const query = new URLSearchParams({
+    department: searchParams.department || "",
+    fingerPrintId: searchParams.fingerPrintId || "",
+    page: searchParams.page || "",
+  }).toString();
+  const navigate = useNavigate();
 
   const [data] = createResource(() =>
     employeeGet(params.id, auth.user()?.token)
@@ -105,6 +112,7 @@ export const Update = () => {
           success: <b>Done</b>,
         }
       )
+      .then(() => navigate(`/employee?${query}`))
       .catch(console.error);
   };
 

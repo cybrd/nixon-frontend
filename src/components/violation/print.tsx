@@ -2,8 +2,8 @@ import { Show, createResource, useContext } from "solid-js";
 import { useParams } from "@solidjs/router";
 
 import { AuthContext } from "../../context/auth";
-import { violationGetByControlNumber } from "../../services/violation";
 import { Violation } from "../../models/violation";
+import { violationGetByControlNumber } from "../../services/violation";
 
 const PrintHeader = () => (
   <>
