@@ -5,7 +5,9 @@ import {
   createSignal,
   useContext,
 } from "solid-js";
+import { RiArrowsArrowDownSLine, RiArrowsArrowLeftSLine } from "solid-icons/ri";
 import { useNavigate, useParams, useSearchParams } from "@solidjs/router";
+import { Combobox } from "@kobalte/core/combobox";
 import { createStore } from "solid-js/store";
 
 import { AuthContext } from "../../context/auth";
@@ -97,6 +99,15 @@ export const Summary = () => {
     nav(`/violation/summary/${params.id}?${newQuery.toString()}`);
   };
 
+  const comboboxOptions = [
+    { label: "----", value: "" },
+    ...Object.entries(optionsFingerPrintId).map(([k, v]) => ({
+      label: v,
+      value: k,
+    })),
+  ];
+  const defaultValue = comboboxOptions.find((x) => params.id === x.value);
+
   return (
     <div>
       <table class="table table-striped table-hover table-bordered">
@@ -107,23 +118,45 @@ export const Summary = () => {
                 <label for="fingerPrintId" class="form-label">
                   Employee
                 </label>
-                <select
-                  id="fingerPrintId"
-                  onChange={(e) => handleEmployeeChange(e.currentTarget.value)}
+                <Combobox
+                  class="d-inline-block"
+                  options={comboboxOptions}
+                  optionValue="value"
+                  optionTextValue="label"
+                  optionLabel="label"
+                  name="fingerPrintId"
+                  placeholder="fingerPrintId"
+                  onChange={(e) => handleEmployeeChange(e?.value || "")}
+                  defaultValue={defaultValue}
+                  sameWidth={true}
+                  itemComponent={(props) => (
+                    <Combobox.Item item={props.item} class="combobox__item">
+                      <Combobox.ItemLabel>
+                        {props.item.rawValue.label}
+                      </Combobox.ItemLabel>
+                      <Combobox.ItemIndicator class="combobox__item-indicator">
+                        <RiArrowsArrowLeftSLine />
+                      </Combobox.ItemIndicator>
+                    </Combobox.Item>
+                  )}
                 >
-                  <option value="">----</option>
-                  {Object.entries(optionsFingerPrintId).map(([k, v]) => {
-                    if (k === params.id) {
-                      return (
-                        <option value={k} selected>
-                          {v}
-                        </option>
-                      );
-                    }
-
-                    return <option value={k}>{v}</option>;
-                  })}
-                </select>
+                  <Combobox.Control
+                    class="combobox__control"
+                    aria-label="Fruit"
+                  >
+                    <Combobox.Input class="combobox__input" />
+                    <Combobox.Trigger class="combobox__trigger">
+                      <Combobox.Icon class="combobox__icon">
+                        <RiArrowsArrowDownSLine />
+                      </Combobox.Icon>
+                    </Combobox.Trigger>
+                  </Combobox.Control>
+                  <Combobox.Portal>
+                    <Combobox.Content class="combobox__content">
+                      <Combobox.Listbox class="combobox__listbox" />
+                    </Combobox.Content>
+                  </Combobox.Portal>
+                </Combobox>
               </div>
               <form onSubmit={handleDateChange}>
                 <div>

@@ -52,7 +52,7 @@ export const List = () => {
   };
 
   return (
-    <div>
+    <>
       <table class="table table-striped table-hover table-bordered">
         <thead class="sticky-top bg-white p-2">
           <tr>
@@ -122,6 +122,6 @@ export const List = () => {
         </Modal.Footer>
       </Modal>
       <Toaster />
-    </div>
+    </>
   );
 };

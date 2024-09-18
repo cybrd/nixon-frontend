@@ -3,6 +3,7 @@ import { MetaProvider } from "@solidjs/meta";
 import { render } from "solid-js/web";
 
 import "bootstrap/scss/bootstrap.scss";
+import "./index.scss";
 
 import { AuthProvider } from "./context/auth";
 import { Protected } from "./components/protected";
