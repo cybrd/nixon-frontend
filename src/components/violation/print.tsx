@@ -246,7 +246,7 @@ const PrintFooter = (data: Violation | undefined) => (
           <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
         <tr style="height: 40px">
-          <td class="text-center align-bottom">MERLITA VASQUEZ</td>
+          <td class="text-center align-bottom">Merlita Vasquez</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
@@ -256,7 +256,7 @@ const PrintFooter = (data: Violation | undefined) => (
           <td class="w-50 text-center border-top border-dark">Date</td>
         </tr>
         <tr style="height: 40px">
-          <td class="text-center align-bottom">EDSON GO</td>
+          <td class="text-center align-bottom">Edson Go</td>
           <td>&nbsp;</td>
         </tr>
         <tr>

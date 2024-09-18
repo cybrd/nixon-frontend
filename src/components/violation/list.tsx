@@ -28,7 +28,7 @@ const ListHeader = () => (
     <th>Number of Times</th>
     <th>Penalty</th>
     <th>Action</th>
-    <th>Actions</th>
+    <th>-</th>
   </tr>
 );
 

@@ -72,7 +72,7 @@ export const List = () => {
             <th>Department</th>
             <th>Position</th>
             <th>Name</th>
-            <th>Actions</th>
+            <th>-</th>
           </tr>
         </thead>
         <tbody>
