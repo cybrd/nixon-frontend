@@ -79,12 +79,14 @@ export const Summary = () => {
   const nav = useNavigate();
 
   const handleEmployeeChange = (id: string) => {
-    const newQuery = new URLSearchParams({
-      dateFrom: fields.dateFrom || "",
-      dateTo: fields.dateTo || "",
-    }).toString();
-    setOptions({ ...options(), id, newQuery });
-    nav(`/violation/summary/${id}?${newQuery.toString()}`);
+    if (id) {
+      const newQuery = new URLSearchParams({
+        dateFrom: fields.dateFrom || "",
+        dateTo: fields.dateTo || "",
+      }).toString();
+      setOptions({ ...options(), id, newQuery });
+      nav(`/violation/summary/${id}?${newQuery.toString()}`);
+    }
   };
 
   const handleDateChange = (event: Event) => {
