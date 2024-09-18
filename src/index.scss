@@ -1,7 +1,6 @@
 .combobox__control {
   display: inline-flex;
   justify-content: space-between;
-  width: 500px;
   border-radius: 6px;
   font-size: 16px;
   line-height: 1;
@@ -15,15 +14,10 @@
   border-color: hsl(0 72% 51%);
   color: hsl(0 72% 51%);
 }
-.combobox__control_multi {
-  width: 100%;
-  min-width: 500px;
-  max-width: 500px;
-}
 .combobox__input {
   appearance: none;
   display: inline-flex;
-  min-width: 500px;
+  width: 500px;
   min-height: 40px;
   padding-left: 16px;
   font-size: 16px;
@@ -56,18 +50,6 @@
   height: 20px;
   width: 20px;
   flex: 0 0 20px;
-}
-.combobox__description {
-  margin-top: 8px;
-  color: hsl(240 5% 26%);
-  font-size: 12px;
-  user-select: none;
-}
-.combobox__error-message {
-  margin-top: 8px;
-  color: hsl(0 72% 51%);
-  font-size: 12px;
-  user-select: none;
 }
 .combobox__content {
   background-color: white;
@@ -112,12 +94,6 @@
   outline: none;
   background-color: hsl(200 98% 39%);
   color: white;
-}
-.combobox__section {
-  padding: 8px 0 0 8px;
-  font-size: 14px;
-  line-height: 32px;
-  color: hsl(240 4% 46%);
 }
 .combobox__item-indicator {
   height: 20px;

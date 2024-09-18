@@ -128,7 +128,6 @@ export const Summary = () => {
                   placeholder="fingerPrintId"
                   onChange={(e) => handleEmployeeChange(e?.value || "")}
                   defaultValue={defaultValue}
-                  sameWidth={true}
                   itemComponent={(props) => (
                     <Combobox.Item item={props.item} class="combobox__item">
                       <Combobox.ItemLabel>
