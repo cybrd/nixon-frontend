@@ -111,16 +111,18 @@ export const List = () => {
                 <td>{item().penalty}</td>
                 <td>{item().action}</td>
                 <td>
-                  <div>
-                    <a
-                      href="#"
-                      onClick={() =>
-                        handleOpen(item().controlNumber, item()._id)
-                      }
-                    >
-                      Delete
-                    </a>
-                  </div>
+                  {auth.user().role === "admin" && (
+                    <div>
+                      <a
+                        href="#"
+                        onClick={() =>
+                          handleOpen(item().controlNumber, item()._id)
+                        }
+                      >
+                        Delete
+                      </a>
+                    </div>
+                  )}
                   <div>
                     <A href={`/violation/${item()._id}?${options().query}`}>
                       Update

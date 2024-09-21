@@ -84,16 +84,18 @@ export const List = () => {
                 <td>{item().position}</td>
                 <td>{item().name}</td>
                 <td>
-                  <div>
-                    <a
-                      href="#"
-                      onClick={() =>
-                        handleOpen(item().fingerPrintId, item()._id)
-                      }
-                    >
-                      Delete
-                    </a>
-                  </div>
+                  {auth.user().role === "admin" && (
+                    <div>
+                      <a
+                        href="#"
+                        onClick={() =>
+                          handleOpen(item().fingerPrintId, item()._id)
+                        }
+                      >
+                        Delete
+                      </a>
+                    </div>
+                  )}
                   <div>
                     <A href={`/employee/${item()._id}?${options().query}`}>
                       Update
