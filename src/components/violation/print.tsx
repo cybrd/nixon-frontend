@@ -328,11 +328,11 @@ export const Print = () => {
         <h6 class="fw-bold">Description of the Incident(s) or Behavior(s):</h6>
         <table class="w-100">
           <tbody>
-            <tr>
-              <td class="border-bottom border-dark w-100">
-                {data()?.incidentDescription}
-              </td>
-            </tr>
+            {chunkSentence(data()?.incidentDescription || "")?.map((x) => (
+              <tr>
+                <td class="border-bottom border-dark w-100">{x}</td>
+              </tr>
+            ))}
             <tr>
               <td class="border-bottom border-dark w-100">&nbsp;</td>
             </tr>
@@ -342,11 +342,11 @@ export const Print = () => {
         <h6 class="fw-bold mt-3">Violation Description:</h6>
         <table class="w-100">
           <tbody>
-            <tr>
-              <td class="border-bottom border-dark w-100">
-                {data()?.description}
-              </td>
-            </tr>
+            {chunkSentence(data()?.description || "")?.map((x) => (
+              <tr>
+                <td class="border-bottom border-dark w-100">{x}</td>
+              </tr>
+            ))}
             <tr>
               <td class="border-bottom border-dark w-100">&nbsp;</td>
             </tr>
@@ -371,3 +371,5 @@ export const Print = () => {
     </Show>
   );
 };
+
+const chunkSentence = (str: string) => str.match(/.{1,100}(?= |$)/gu);
