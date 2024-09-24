@@ -339,6 +339,20 @@ export const Print = () => {
           </tbody>
         </table>
 
+        <h6 class="fw-bold mt-3">Violation Description:</h6>
+        <table class="w-100">
+          <tbody>
+            <tr>
+              <td class="border-bottom border-dark w-100">
+                {data()?.description}
+              </td>
+            </tr>
+            <tr>
+              <td class="border-bottom border-dark w-100">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
         <table class="w-100 m-2">
           <tbody>
             <tr>
