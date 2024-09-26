@@ -2,6 +2,7 @@ import { Show, createResource, useContext } from "solid-js";
 import { useParams } from "@solidjs/router";
 
 import { AuthContext } from "../../context/auth";
+import { ONE } from "../../constants";
 import { Violation } from "../../models/violation";
 import { violationGetByControlNumber } from "../../services/violation";
 
@@ -275,8 +276,13 @@ export const Print = () => {
   const params = useParams();
 
   const [data] = createResource(() =>
-    violationGetByControlNumber(params.id, auth.user()?.token)
+    violationGetByControlNumber(params.id, auth.user()?.token).then((res) => {
+      setTimeout(window.print, ONE);
+      return res;
+    })
   );
+
+  console.log(data.loading);
 
   return (
     <Show when={data()}>

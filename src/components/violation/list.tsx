@@ -73,7 +73,7 @@ export const List = () => {
   };
 
   return (
-    <div>
+    <div class="d-print-none">
       <table class="table table-striped table-hover table-bordered">
         <thead class="sticky-top bg-white p-2">
           <tr>
@@ -129,7 +129,10 @@ export const List = () => {
                     </A>
                   </div>
                   <div>
-                    <A href={`/violation/print/${item().controlNumber}`}>
+                    <A
+                      href={`/violation/print/${item().controlNumber}`}
+                      target="iframe1"
+                    >
                       Print
                     </A>
                   </div>
@@ -165,6 +168,8 @@ export const List = () => {
         </Modal.Footer>
       </Modal>
       <Toaster />
+
+      <iframe name="iframe1"></iframe>
     </div>
   );
 };
