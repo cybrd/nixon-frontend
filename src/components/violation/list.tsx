@@ -7,6 +7,7 @@ import { violationDelete, violationList } from "../../services/violation";
 import { AuthContext } from "../../context/auth";
 import { Query } from "../../models/query";
 import { filterSelect } from "../helper/filter-select";
+import moment from "moment";
 import { pagination } from "../helper/pagination";
 import { setParamsAndOptions } from "../helper/params";
 
@@ -100,7 +101,7 @@ export const List = () => {
                 <td>{item().department}</td>
                 <td>{item().position}</td>
                 <td>{item().deptHead}</td>
-                <td>{item().dateOfIncident}</td>
+                <td>{moment(item().dateOfIncident).format("MMMM D, YYYY")}</td>
                 <td>{item().timeOfIncident}</td>
                 <td>{item().reportedBy}</td>
                 <td>{item().incidentDescription}</td>

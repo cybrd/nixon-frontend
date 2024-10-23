@@ -14,6 +14,7 @@ import { AuthContext } from "../../context/auth";
 import { Employee } from "../../models/employee";
 import { FilterOptionsContext } from "../../context/filter-options";
 import { Query } from "../../models/query";
+import moment from "moment";
 import { violationSummary } from "../../services/violation";
 
 const ListHeader = () => (
@@ -192,7 +193,7 @@ export const Summary = () => {
             {(item) => (
               <tr>
                 <td>{item().controlNumber}</td>
-                <td>{item().dateOfIncident}</td>
+                <td>{moment(item().dateOfIncident).format("MMMM D, YYYY")}</td>
                 <td>{item().incidentDescription}</td>
                 <td>{item().under}</td>
                 <td>{item().violation}</td>
