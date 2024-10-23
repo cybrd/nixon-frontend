@@ -4,6 +4,7 @@ import { useParams } from "@solidjs/router";
 import { AuthContext } from "../../context/auth";
 import { ONE } from "../../constants";
 import { Violation } from "../../models/violation";
+import moment from "moment";
 import { violationGetByControlNumber } from "../../services/violation";
 
 const PrintHeader = () => (
@@ -320,7 +321,7 @@ export const Print = () => {
             <tr>
               <td class="text-end">Date of Incident:</td>
               <td class="border-bottom border-dark" style="width: 200px">
-                {data()?.dateOfIncident}
+                {moment(data()?.dateOfIncident).format("MMMM D, YYYY")}
               </td>
               <td class="text-end">Time of Incident:</td>
               <td class="border-bottom border-dark" style="width: 200px">
