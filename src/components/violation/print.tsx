@@ -318,7 +318,7 @@ export const Print = () => {
         <table class="w-100">
           <tbody>
             <tr>
-              <td class="text-end">Date(s) of Incident:</td>
+              <td class="text-end">Date of Incident:</td>
               <td class="border-bottom border-dark" style="width: 200px">
                 {data()?.dateOfIncident}
               </td>
