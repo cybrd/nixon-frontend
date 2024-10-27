@@ -4,6 +4,7 @@ import { useParams } from "@solidjs/router";
 import { AuthContext } from "../../context/auth";
 import { ONE } from "../../constants";
 import { Violation } from "../../models/violation";
+import { formatAMPM } from "../helper/time";
 import moment from "moment";
 import { violationGetByControlNumber } from "../../services/violation";
 
@@ -325,7 +326,7 @@ export const Print = () => {
               </td>
               <td class="text-end">Time of Incident:</td>
               <td class="border-bottom border-dark" style="width: 200px">
-                {data()?.timeOfIncident}
+                {formatAMPM(data()?.timeOfIncident)}
               </td>
             </tr>
           </tbody>
