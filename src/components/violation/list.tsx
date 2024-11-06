@@ -48,7 +48,7 @@ export const List = () => {
   const auth = useContext(AuthContext);
   const [params, setParams] = useSearchParams();
   const query = new URLSearchParams({
-    department: params.department || "",
+    fingerPrintId: params.fingerPrintId || "",
     page: params.page || "",
   }).toString();
   const [options, setOptions] = createSignal<Query>({
@@ -82,7 +82,7 @@ export const List = () => {
             <th colSpan={"100%"}>
               {filterSelect(
                 setParamsAndOptions(setOptions, setParams),
-                "department"
+                "fingerPrintId"
               )}
             </th>
           </tr>
