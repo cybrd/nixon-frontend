@@ -48,7 +48,7 @@ export const List = () => {
   const auth = useContext(AuthContext);
   const [params, setParams] = useSearchParams();
   const query = new URLSearchParams({
-    employeeNumber: params.fingerPrintId || "",
+    fingerPrintId: params.fingerPrintId || "",
     page: params.page || "",
   }).toString();
   const [options, setOptions] = createSignal<Query>({
